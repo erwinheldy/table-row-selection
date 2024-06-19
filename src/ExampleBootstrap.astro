@@ -1,0 +1,42 @@
+<style>
+  #example2 th:first-child {
+    width: 0;
+  }
+</style>
+
+<table id="example2" class="table table-bordered">
+  <thead>
+    <tr>
+      <th><div><input class="form-check-input" type="checkbox" /></div></th>
+      <th>Name</th>
+      <th>Position</th>
+      <th>Office</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><div><input value="1" class="form-check-input" type="checkbox" /></div></td>
+      <td>Airi Satou</td>
+      <td>Accountant</td>
+      <td>Tokyo</td>
+    </tr>
+    <tr>
+      <td><div><input value="2" class="form-check-input" type="checkbox" /></div></td>
+      <td>Angelica Ramos</td>
+      <td>CEO</td>
+      <td>London</td>
+    </tr>
+    <tr>
+      <td><div><input value="3" class="form-check-input" type="checkbox" /></div></td>
+      <td>Ashton Cox</td>
+      <td>Junior Technical Author</td>
+      <td>San Francisco</td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  new TableRowSelection(document.getElementById('example2'), {
+    activeClass: 'table-primary',
+  })
+</script>

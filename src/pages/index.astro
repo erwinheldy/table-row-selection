@@ -1,0 +1,145 @@
+---
+import { Code } from 'astro:components'
+import ExampleBasic from '../ExampleBasic.astro'
+import ExampleBasicRaw from '../ExampleBasic.astro?raw'
+import ExampleBootstrap from '../ExampleBootstrap.astro'
+import ExampleBootstrapRaw from '../ExampleBootstrap.astro?raw'
+import '../style.css'
+import pkg from '../../package.json'
+
+// const theme = 'one-dark-pro'
+const theme = 'vitesse-light'
+const constructor = 'TableRowSelection'
+const install = `npm install ${pkg.name}`
+const usage = `import ${pkg.libName} from '${pkg.name}'
+
+const table = new ${pkg.libName}(document.getElementById('example'))
+`
+const configuration = `const config = {
+  activeClass: 'table-active', // CSS class for selected rows
+}
+
+const table = new ${pkg.libName}(table, config)
+`
+const onChange = `const table = new ${pkg.libName}(document.getElementById('example'))
+table.onChange = () => {
+  console.log('selected changes')
+}
+`
+const getSelected = `const table = new ${pkg.libName}(document.getElementById('example'))
+table.onChange = () => {
+  console.log(table.getSelected())
+}
+`
+const selectAll = `table.selectAll()`
+const unselectAll = `table.unselectAll()`
+const select = `table.select('1')
+table.select(['1', '3'])`
+const unselect = `table.unselect('1')
+table.unselect(['1', '3'])`
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={pkg.description} />
+    <meta name="keywords" content={pkg.keywords.join(', ')} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.18/latin.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/hind-siliguri@5.0.13/latin.min.css" />
+    <title>{pkg.name} | {pkg.description}</title>
+  </head>
+  <body>
+    <div class="container pt-5">
+      <div class="d-flex align-items-center mb-3 gap-3">
+        <h1 class="mb-0">{pkg.name}</h1>
+        <a href={pkg.repository} target="_blank" class="link-body-emphasis">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path></svg>
+        </a>
+      </div>
+      <p>`{pkg.name}` is a JavaScript library for easily implementing row selection in HTML tables. This library allows you to add row selection features using a custom CSS class and detect selection changes with an event handler.</p>
+
+      <!-- Installation -->
+      <h3>Installation</h3>
+      <p>Install this package via npm</p>
+      <Code code={install} lang="bash" theme={theme} />
+
+      <!-- Usage -->
+      <h3>Usage</h3>
+      <p>To use this library, simply call the `{pkg.name}` constructor with the table element as the argument:</p>
+      <Code code={usage} lang="javascript" theme={theme} />
+
+      <!-- Configuration -->
+      <h3>Configuration</h3>
+      <p>You can add additional configuration such as `activeClass`` to add a CSS class to the selected rows:</p>
+      <Code code={configuration} lang="javascript" theme={theme} />
+
+      <!-- Methods -->
+      <h3>Methods</h3>
+      <p>This library provides several methods to facilitate row selection manipulation or event handling:</p>
+      <h5>`onChange()`</h5>
+      <p>Detect row selection changes.</p>
+      <Code code={onChange} lang="javascript" theme={theme} />
+      <h5>`getSelected()`</h5>
+      <p>Returns an array of selected checkbox values within each row.</p>
+      <Code code={getSelected} lang="javascript" theme={theme} />
+      <h5>`selectAll()`</h5>
+      <p>Selects all rows in the table.</p>
+      <Code code={selectAll} lang="javascript" theme={theme} />
+      <h5>`unselectAll()`</h5>
+      <p>Unselects all rows in the table.</p>
+      <Code code={unselectAll} lang="javascript" theme={theme} />
+      <h5>`select(value: string | string[])`</h5>
+      <p>Select rows with specific values.</p>
+      <Code code={select} lang="javascript" theme={theme} />
+      <h5>`unselect(value: string | string[])`</h5>
+      <p>Unselect rows with specific values.</p>
+      <Code code={unselect} lang="javascript" theme={theme} />
+
+      <!-- Example Usage -->
+      <h3>Example Usage</h3>
+      <p>Here is a complete example of using this library:</p>
+      <ul class="nav nav-underline justify-content-end" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="preview-tab" data-bs-toggle="tab" data-bs-target="#preview-tab-pane" type="button" role="tab" aria-controls="preview-tab-pane" aria-selected="true">Preview</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="code-tab" data-bs-toggle="tab" data-bs-target="#code-tab-pane" type="button" role="tab" aria-controls="code-tab-pane" aria-selected="false">Code</button>
+        </li>
+      </ul>
+      <div class="tab-content py-3" id="myTabContent">
+        <div class="tab-pane show active" id="preview-tab-pane" role="tabpanel" aria-labelledby="preview-tab" tabindex="0">
+          <ExampleBasic />
+        </div>
+        <div class="tab-pane" id="code-tab-pane" role="tabpanel" aria-labelledby="code-tab" tabindex="0">
+          <Code code={ExampleBasicRaw} lang="html" theme={theme} />
+        </div>
+      </div>
+      <ul class="nav nav-underline justify-content-end" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="preview2-tab" data-bs-toggle="tab" data-bs-target="#preview2-tab-pane" type="button" role="tab" aria-controls="preview2-tab-pane" aria-selected="true">Preview</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="code2-tab" data-bs-toggle="tab" data-bs-target="#code2-tab-pane" type="button" role="tab" aria-controls="code2-tab-pane" aria-selected="false">Code</button>
+        </li>
+      </ul>
+      <div class="tab-content py-3" id="myTabContent">
+        <div class="tab-pane show active" id="preview2-tab-pane" role="tabpanel" aria-labelledby="preview2-tab" tabindex="0">
+          <ExampleBootstrap />
+        </div>
+        <div class="tab-pane" id="code2-tab-pane" role="tabpanel" aria-labelledby="code2-tab" tabindex="0">
+          <Code code={ExampleBootstrapRaw} lang="html" theme={theme} />
+        </div>
+      </div>
+    </div>
+    <script>
+      import { Tab } from 'bootstrap-esm'
+      import TableRowSelectionClass from '../table-row-selection'
+      ;(window as any).Tab = Tab
+      ;(window as any).TableRowSelection = TableRowSelectionClass
+    </script>
+  </body>
+</html>

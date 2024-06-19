@@ -1,0 +1,48 @@
+{
+  "name": "table-row-selection",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Easily implementing row selection in HTML tables",
+  "license": "MIT",
+  "homepage": "https://table-row-selection.netlify.app",
+  "repository": "https://github.com/erwinheldy/table-row-selection",
+  "bugs": {
+    "url": "https://github.com/erwinheldy/table-row-selection/issues"
+  },
+  "keywords": [
+    "table",
+    "table select",
+    "select all"
+  ],
+  "source": "./src/table-row-selection.ts",
+  "main": "./dist/table-row-selection.esm.js",
+  "module": "./dist/table-row-selection.esm.js",
+  "types": "./dist/table-row-selection.esm.d.ts",
+  "libName": "TableRowSelection",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "astro dev",
+    "build": "jalankan build:*",
+    "build:js": "vite build",
+    "build:js:min": "esbuild dist/*.js --minify --outdir=dist --out-extension:.js=.min.js --tsconfig-raw='{}'",
+    "build:docs": "astro build",
+    "preview": "vite preview --outDir docs --port 3000 --host",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "2.21.1",
+    "@types/node": "20.14.5",
+    "astro": "4.10.2",
+    "bootstrap-esm": "1.0.0",
+    "dts-bundle-generator": "9.5.1",
+    "esbuild": "0.21.5",
+    "eslint": "9.5.0",
+    "jalankan": "0.0.1",
+    "typescript": "5.4.5",
+    "vite": "5.3.1",
+    "vite-plugin-dts": "3.9.1"
+  }
+}

@@ -1,0 +1,82 @@
+<style>
+  #example {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  #example th:first-child {
+    width: 0;
+  }
+  #example td,
+  #example th {
+    border: 1px solid #ddd;
+    padding: 0.25rem 0.5rem;
+    vertical-align: middle;
+  }
+  #example tr.table-active {
+    background-color: #eee;
+  }
+</style>
+
+<table id="example">
+  <thead>
+    <tr>
+      <th><input type="checkbox" /></th>
+      <th>Name</th>
+      <th>Position</th>
+      <th>Office</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><input type="checkbox" value="1" /></td>
+      <td>Airi Satou</td>
+      <td>Accountant</td>
+      <td>Tokyo</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" value="2" /></td>
+      <td>Angelica Ramos</td>
+      <td>CEO</td>
+      <td>London</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" value="3" /></td>
+      <td>Ashton Cox</td>
+      <td>Junior Technical Author</td>
+      <td>San Francisco</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="4">
+        <div>Selected: <code id="selected">0</code></div>
+        <div>Selected values: <code id="selected-values">[]</code></div>
+        <button id="selectAll"><code>selectAll</code></button>
+        <button id="unselectAll"><code>unselectAll</code></button>
+        <button id="select"><code>select(['1', '3'])</code></button>
+        <button id="unselect"><code>unselect(['1'])</code></button>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<script>
+  const table = new TableRowSelection(document.getElementById('example'))
+  table.onChange = () => {
+    const selected = table.getSelected()
+    document.getElementById('selected').textContent = selected.length
+    document.getElementById('selected-values').textContent = JSON.stringify(selected)
+  }
+  document.getElementById('selectAll').addEventListener('click', () => {
+    table.selectAll()
+  })
+  document.getElementById('unselectAll').addEventListener('click', () => {
+    table.unselectAll()
+  })
+  document.getElementById('select').addEventListener('click', () => {
+    table.select(['1', '3'])
+  })
+  document.getElementById('unselect').addEventListener('click', () => {
+    table.unselect(['1'])
+  })
+</script>
