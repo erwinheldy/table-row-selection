@@ -29,20 +29,21 @@
     "build:js:min": "esbuild dist/*.js --minify --outdir=dist --out-extension:.js=.min.js --tsconfig-raw='{}'",
     "build:docs": "astro build",
     "preview": "vite preview --outDir docs --port 3000 --host",
+    "depcheck": "depcheck",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "2.21.1",
-    "@types/node": "20.14.5",
-    "astro": "4.10.2",
+    "@antfu/eslint-config": "2.21.2",
+    "@types/node": "20.14.9",
+    "astro": "4.11.3",
     "bootstrap-esm": "1.0.0",
-    "dts-bundle-generator": "9.5.1",
-    "esbuild": "0.21.5",
-    "eslint": "9.5.0",
+    "depcheck": "1.4.7",
+    "esbuild": "0.22.0",
+    "eslint": "9.6.0",
+    "fast-dts": "1.0.1",
     "jalankan": "0.0.1",
-    "typescript": "5.4.5",
-    "vite": "5.3.1",
-    "vite-plugin-dts": "3.9.1"
+    "typescript": "5.5.2",
+    "vite": "5.3.2"
   }
 }

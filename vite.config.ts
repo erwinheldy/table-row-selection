@@ -1,7 +1,6 @@
 import { resolve } from 'node:path'
-import { rename } from 'node:fs/promises'
 import { defineConfig } from 'vite'
-import dts from 'vite-plugin-dts'
+import { generate } from 'fast-dts'
 import pkg from './package.json'
 
 // https://vitejs.dev/config/
@@ -17,10 +16,11 @@ export default defineConfig({
     },
   },
   plugins: [
-    dts({
-      include: pkg.source,
-      insertTypesEntry: true,
-      afterBuild: () => rename(`dist/${pkg.name}.d.ts`, pkg.types),
-    }),
+    {
+      name: 'dts',
+      async closeBundle() {
+        await generate(pkg.source, pkg.types)
+      },
+    },
   ],
 })

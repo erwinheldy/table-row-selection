@@ -80,7 +80,7 @@ class TableRowSelection {
     return instance
   }
 
-  public getSelected() {
+  public getSelected(): string[] {
     return this.getRows().filter(input => input.checked).map(input => input.value)
   }
 
@@ -93,21 +93,21 @@ class TableRowSelection {
     this.changes()
   }
 
-  public selectAll() {
+  public selectAll(): void {
     this.setAll(true)
     this.changes()
   }
 
-  public unselectAll() {
+  public unselectAll(): void {
     this.setAll(false)
     this.changes()
   }
 
-  public select(value: string | string[]) {
+  public select(value: string | string[]): void {
     this.setSelected(value, true)
   }
 
-  public unselect(value: string | string[]) {
+  public unselect(value: string | string[]): void {
     this.setSelected(value, false)
   }
 }
